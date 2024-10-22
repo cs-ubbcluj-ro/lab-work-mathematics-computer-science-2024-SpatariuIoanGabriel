@@ -1,0 +1,53 @@
+Language Specification Documentation
+
+1.1 Alphabet:
+    This section defines the basic characters that can be used in the language. 
+    - Upper (A-Z) and lower case letters (a-z) represent the basic building blocks for identifiers and keywords.
+    - The underscore '_' can be used in identifiers to improve readability or separate words.
+    - Decimal digits (0-9) are used in numeric constants and identifiers.
+
+1.2 Lexic
+    This section outlines the special symbols and rules for constructing valid identifiers, constants, and reserved words.
+    
+    a. Special symbols:
+        - Operators: These symbols represent mathematical and logical operations (e.g., + for addition, * for multiplication).
+        - Separators: These are characters that help structure the code, such as spaces, commas, and braces.
+        - Reserved Words: These are predefined keywords in the language that cannot be used as identifiers. They perform specific functions (e.g., 'if' for conditional statements, 'while' for loops).
+
+    b. Identifiers:
+        - Identifiers are names used to identify variables, functions, and other entities in the code. 
+        - An identifier must start with a letter and can be followed by letters or digits, ensuring that it is distinct and descriptive.
+        - The breakdown into 'letter' and 'digit' provides clarity on valid characters for identifiers.
+        
+    c. Constants:
+        - Constants are fixed values used in the program.
+        - Integer constants can be positive or negative and must follow specific formats, ensuring clarity in numerical representations.
+        - Character constants are single characters enclosed in single quotes, while string constants are sequences of characters enclosed in double quotes.
+
+1.3 Syntax
+    This section details the structure and formation of valid programs and statements in the language.
+
+    a. Program Structure:
+        - This defines the overall layout of a program, indicating that every program must start with 'int main()' and end with a return statement.
+
+    b. Statements:
+        - A statement is a single instruction in the program. Statements can be grouped into lists, and each statement may end with a semicolon.
+        - Different types of statements (simple or structured) dictate the flow and control of the program.
+        - Simple statements include assignments (setting a variable) and I/O operations (input/output), while structured statements allow for complex logic such as conditionals and loops.
+
+    c. Member List:
+        - This section describes how to declare members (attributes or methods) in a structure. 
+        - Each member must have a data type and a unique identifier, allowing for organized and meaningful data structures.
+
+    d. Data Types:
+        - Data types define the kind of data that can be stored in variables. 
+        - This section outlines the primitive types (int, bool, char, etc.) and user-defined types (struct), enabling the programmer to utilize various data forms effectively.
+
+    e. Conditions:
+        - Conditions are expressions that evaluate to true or false, controlling the flow of execution in the program.
+        - This section specifies how to form conditions using relations (comparisons), providing the basis for conditional statements like 'if' and loops like 'while'.
+
+    f. Expressions and Terms:
+        - Expressions are combinations of values and operators that yield a result. 
+        - This section elaborates on how to construct expressions using terms and factors, allowing for arithmetic and logical calculations within the program.
+

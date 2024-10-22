@@ -1,0 +1,62 @@
+Language Specification
+
+1.1 Alphabet:
+
+	a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
+	b. Underline character '_';
+	c. Decimal digits (0-9);
+
+1.2 Lexic
+
+	a. Special symbols:
+	 - Operators: + - * / = < <= > >= % := <>
+	 - Separators: space [ ] { } , : ;
+	 - Reserved Words: array int char long if else break continue while do bool cin cout read main double string struct then return
+
+	b. Identifiers:
+	 - A sequence of letters and digits, starting with a letter:
+	   Rule: identifier ::= letter {letter | digit}
+	 - letter ::= "A" | "B" | ... | "Z" | "a" | "b" | ... | "z"
+	 - digit ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+	 - no_0_digit ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+
+	c. Constants:
+	 - int_const ::= +number|-number|number
+	 - number ::= no_0_digit {digit} | "0"
+	 - char_const ::= "'" (letter | digit) "'"
+	 - string_const ::= "\"" char_const { char_const } "\""
+	
+	- bool ::= "true"| "false"
+
+1.3 Syntax
+
+	a. Program Structure:
+	 - program ::= 'int main() { stmt_list return 0; }'
+
+	b. Statements:
+	 - stmt_list ::= stmt | stmt ';' stmt_list
+	 - stmt ::= stmt_simple | stmt_struct
+	 - stmt_simple ::= stmt_assign | stmt_io
+	 - stmt_assign ::= identifier "=" expression
+	 - stmt_io ::= "cin >>" identifier | "cout <<" identifier
+	 - stmt_struct ::= stmt_cmpd | stmt_if | stmt_while
+	 - stmt_cmpd ::= '{' stmt_list '}'
+	 - stmt_if ::= 'if' '(' condition ')' stmt_list ['else' stmt]
+	 - stmt_while ::= 'while' '(' condition ')' stmt_list
+	 - struct_decl ::= 'struct' identifier '{' member_list '}'
+
+	c. Member List:
+	 - member_list ::= member_decl | member_decl ';' member_list
+	 - member_decl ::= DataType identifier
+
+	d. Data Types:
+	 - DataType ::= int | bool | char | string | struct
+
+	e. Conditions:
+	 - condition ::= expression relation expression
+	 - relation ::= "<" | ">" | "<=" | ">=" | "==" | "!="
+
+	f. Expressions and Terms:
+	 - expression ::= term | expression "+" term | expression "-" term
+	 - term ::= factor | term "*" factor | term "/" factor | term "%" factor
+	 - factor ::= "(" expression ")" | identifier | int_const
