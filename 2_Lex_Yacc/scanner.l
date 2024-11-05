@@ -16,7 +16,7 @@
 
 %%
 
-"int"|"if"|"else"|"while"|"do"|"bool"|"char"|"cin"|"cout"|"main"|"double"|"string"|"struct"|"endl"|"return" {
+"int"|"main"|"if"|"else"|"while"|"do"|"bool"|"char"|"cin"|"cout"|"endl"|"return" {
     fprintf(PifFile, "%s : 0\n", yytext);
     column += yyleng;
 }
@@ -80,13 +80,13 @@
     column += yyleng;
 }
 
-[ \t]+ {
-    column += yyleng;
-}
-
 \n {
     yylineno++;
     column = 1;
+}
+
+[ \t]+ {
+    column += yyleng;
 }
 
 "//".* {
@@ -129,7 +129,6 @@ int main(void) {
         printf("Error opening file\n");
         return 1;
     }
-
     yyin = inputFile;
 
     STFile = fopen("ST.out", "w+");
@@ -145,11 +144,9 @@ int main(void) {
     }
 
     yylex();
-
     fclose(inputFile);
     fclose(STFile);
     fclose(PifFile);
-
     return 0;
 }
 
