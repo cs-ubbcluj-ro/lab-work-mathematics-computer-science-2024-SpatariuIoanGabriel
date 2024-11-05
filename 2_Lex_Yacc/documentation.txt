@@ -1,0 +1,57 @@
+Lexical Analyzer Documentation
+
+Overview
+
+This Lex program analyzes a source code file (problem.txt) and generates two outputs: a Symbol Table (ST) and a Program Internal Form (PIF). The analyzer identifies keywords, identifiers, constants, operators, and punctuation, which are essential for further processing.
+
+Outputs
+
+1.Symbol Table (ST): Contains unique identifiers and constants with their associated indices.
+2.Program Internal Form (PIF): A sequential list of tokens, including keywords, operators, identifiers, and constants.
+
+Key Functionalities:
+
+-Keyword Recognition: Identifies and logs keywords (e.g., int, if, else) in the PIF.
+-Identifiers (ID): Captures user-defined variable names and adds them to the Symbol Table.
+-Constants (CONST): Records numeric and character constants in the Symbol Table.
+-Operator Handling: Recognizes arithmetic (+, -, *, /) and relational operators (==, <, <=) for logging in the PIF.
+-Separator Recognition: Identifies separators such as (, ), {, }, ,, and ;.
+-Whitespace Management: Ignores whitespace but tracks column positions.
+-Error Detection: Catches invalid characters and outputs detailed error messages.
+
+Functions:
+
+-void addSymbol(const char* name, const char* type):
+    -->Adds a new symbol to the Symbol Table, assigning it a unique index.
+-int getSTIndex(const char* name):
+    -->Returns the index of a symbol from the Symbol Table or -1 if not found.
+-void getLexicalError(const char* errorType, const char* token, int line, int column):
+    -->Reports lexical errors with specifics about the error type and its location.
+
+Error Handling:
+
+-Invalid characters are reported in the format:
+    -->Lexical Error at line X, column Y: Invalid character - 'Z'
+
+Program Flow:
+
+-Opens problem.txt for reading.
+-Creates output files ST.out and PIF.out.
+-Calls yylex() to perform lexical analysis.
+-Recognizes tokens and stores them appropriately.
+-Closes files after completing the analysis.
+
+Example Outputs:
+-Symbol Table (ST):
+
+1: x (ID)
+2: 5 (CONST)
+3: a (ID)
+
+-Program Internal Form (PIF):
+
+int : 0
+ID : 1
+= : 0
+CONST : 2
+; : 0
