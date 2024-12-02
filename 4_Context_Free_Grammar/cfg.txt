@@ -1,0 +1,70 @@
+G = {N, Σ, P, S}
+
+N = {
+    "program", "stmt_list", "stmt", "simple_stmt", "structured_stmt", "assignment_stmt", 
+    "io_stmt", "compound_stmt", "if_stmt", "else_clause", "while_stmt", "struct_decl", 
+    "member_list", "member_decl", "datatype", "condition", "relation", "expression", 
+    "expression_tail", "term", "term_tail", "factor"
+}
+
+Σ = {
+    '+', '-', '*', '/', '=', 'cin', 'cout', 'if', 'else', 'while', 'struct', '{', '}', 
+    '[', ']', '>>', '<<', 'int', 'main', 'return', ';', '(', ')', ':=', 'IDENTIFIER', 
+    'INTEGER_CONST', 'CHAR_CONST', 'STRING_CONST', '<', '<=', '>', '>=', '==', '!=', 
+    'bool', 'char', 'string', 'array', 'double', 'break', 'continue', 'do', 'then', 'true', 'false'
+}
+
+S = program
+
+P = {
+
+    # Program Structure
+    program -> 'int' 'main' '(' ')' '{' stmt_list 'return' '0;' '}'
+
+    # Statement List
+    stmt_list -> stmt stmt_list | ε
+
+    # Statements
+    stmt -> simple_stmt | structured_stmt
+
+    # Simple Statements
+    simple_stmt -> assignment_stmt | io_stmt
+
+    assignment_stmt -> IDENTIFIER '=' expression
+    io_stmt -> 'cin' '>>' IDENTIFIER | 'cout' '<<' IDENTIFIER
+
+    # Structured Statements
+    structured_stmt -> compound_stmt | if_stmt | while_stmt | struct_decl
+
+    compound_stmt -> '{' stmt_list '}'
+
+    if_stmt -> 'if' '(' condition ')' stmt_list else_clause
+    else_clause -> 'else' stmt_list | ε
+
+    while_stmt -> 'while' '(' condition ')' stmt_list
+
+    struct_decl -> 'struct' IDENTIFIER '{' member_list '}'
+
+    # Member List
+    member_list -> member_decl ';' member_list | member_decl
+    member_decl -> datatype IDENTIFIER
+
+    # Data Types
+    datatype -> 'int' | 'bool' | 'char' | 'string' | 'array' | 'double'
+
+    # Conditions
+    condition -> expression relation expression
+    relation -> '<' | '<=' | '>' | '>=' | '==' | '!='
+
+    # Expressions
+    expression -> term expression_tail
+    expression_tail -> ('+' | '-') term expression_tail | ε
+
+    # Terms
+    term -> factor term_tail
+    term_tail -> ('*' | '/' | '%') factor term_tail | ε
+
+    # Factors
+    factor -> '(' expression ')' | IDENTIFIER | INTEGER_CONST | CHAR_CONST | STRING_CONST
+
+}
