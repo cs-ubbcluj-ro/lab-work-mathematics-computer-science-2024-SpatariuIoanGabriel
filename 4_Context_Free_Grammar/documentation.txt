@@ -1,0 +1,12 @@
+This grammar G = {N, Σ, P, S} defines the structure of a simple programming language.
+
+- Non-Terminals (N): Represent syntactic categories like `program`, `stmt`, `expression`, etc.
+- Terminals (Σ): Include keywords (`int`, `if`, `while`), operators (`+`, `-`, `*`, `/`), literals (`INTEGER_CONST`, `STRING_CONST`), and punctuation (`{`, `}`, `;`).
+- Start Symbol (S): The root of the grammar, `program`, which defines the main structure of the language.
+- Productions (P): Rules that define how non-terminals are expanded into sequences of terminals and/or non-terminals.
+
+Example:
+- A program starts with `int main()` and contains a list of statements (`stmt_list`).
+- Statements can be simple (e.g., assignments, I/O) or structured (e.g., `if`, `while`, `struct`).
+
+This grammar supports constructs like variable assignments, loops, conditions, and structured data.
