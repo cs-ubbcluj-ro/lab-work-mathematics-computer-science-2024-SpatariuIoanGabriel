@@ -1,12 +1,37 @@
 This grammar G = {N, Σ, P, S} defines the structure of a simple programming language.
 
-- Non-Terminals (N): Represent syntactic categories like `program`, `stmt`, `expression`, etc.
-- Terminals (Σ): Include keywords (`int`, `if`, `while`), operators (`+`, `-`, `*`, `/`), literals (`INTEGER_CONST`, `STRING_CONST`), and punctuation (`{`, `}`, `;`).
-- Start Symbol (S): The root of the grammar, `program`, which defines the main structure of the language.
-- Productions (P): Rules that define how non-terminals are expanded into sequences of terminals and/or non-terminals.
+### Components:
 
-Example:
-- A program starts with `int main()` and contains a list of statements (`stmt_list`).
-- Statements can be simple (e.g., assignments, I/O) or structured (e.g., `if`, `while`, `struct`).
+1. **Non-Terminals (N)**:
+   Non-terminals represent the syntactic categories and higher-level constructs of the language. These are placeholders for more detailed structures in the language syntax. For example:
+   - `program`: Represents the entire program.
+   - `stmt_list`: A list of statements.
+   - `stmt`: A single statement.
+   - `expression`: Represents arithmetic or logical expressions.
 
-This grammar supports constructs like variable assignments, loops, conditions, and structured data.
+2. **Terminals (Σ)**:
+   Terminals are the basic building blocks of the language and correspond to the actual symbols in the source code. These include:
+   - Keywords like `int`, `if`, `while`, `return`, `struct`, etc.
+   - Operators such as `+`, `-`, `*`, `/`, `=`, `==`, `!=`, etc.
+   - Literal types like `INTEGER_CONST`, `CHAR_CONST`, `STRING_CONST`.
+   - Special symbols such as `{`, `}`, `;`, `(`, `)`.
+
+3. **Start Symbol (S)**:
+   The start symbol is the root of the grammar from which all syntactic structures are derived. Here, the start symbol is `program`, which defines the main structure of the program.
+
+4. **Productions (P)**:
+   Productions are rules that define how non-terminals expand into terminals and/or other non-terminals. Each production specifies valid constructs in the language.
+
+   Key examples:
+   - The `program` must begin with `int main()` and include a list of statements (`stmt_list`).
+   - Statements (`stmt`) can be simple (like assignments or I/O operations) or structured (like conditionals, loops, or compound blocks).
+   - Expressions and terms allow for nested mathematical and logical operations.
+
+### Key Features of the Language:
+- **Control Structures**: Includes `if` statements with optional `else` clauses and `while` loops.
+- **Data Types**: Supports basic data types such as `int`, `bool`, `char`, `string`, `double`, and arrays.
+- **Structured Data**: Allows definition of structures (`struct`) with member variables.
+- **Expressions**: Allows arithmetic, logical operations, and comparisons.
+- **Input/Output**: Uses `cin` and `cout` for reading and printing values.
+
+This grammar captures essential constructs to build basic programs, supporting operations like assignments, loops, conditions, and structured data.
