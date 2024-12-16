@@ -1,0 +1,77 @@
+This YACC file performs syntax analysis for a mini-language. It ensures that the input program adheres to the defined grammar and provides outputs such as:
+1. **Validation**: Confirms if the program is syntactically correct.
+2. **Production Logs**: Logs the indexes of the grammar rules used in the file `Productions.out`.
+3. **Error Reporting**: Identifies syntax errors with detailed location information (line and column).
+
+#### Code Explanation
+
+1. **Header Section (`%{ ... %}`)**:
+   - Includes standard libraries:
+     - `stdio.h`: For input-output operations.
+     - `stdlib.h`: For memory allocation and exit functions.
+   - Declares:
+     - `int yylineno`: Tracks the current line number (provided by the lexer).
+     - `int column`: Tracks the column position in the current line.
+     - `void yyerror(const char *s)`: A function that reports syntax errors during parsing.
+     - `FILE* productionFile`: A file pointer to log the indexes of the grammar rules used.
+
+2. **Union Declaration (`%union { ... }`)**:
+   - Defines a union for semantic values:
+     - `intval`: Used to store integer constants.
+     - `strval`: Used to store string values like identifiers or string literals.
+
+3. **Token Declarations (`%token`)**:
+   - Defines the tokens provided by the lexer (Flex):
+     - **Keywords**: `IF`, `ELSE`, `WHILE`, `DO`, `RETURN`, `INT`, `BOOL`, `CHAR`.
+     - **Operators**: `PLUS`, `MINUS`, `MULTIPLY`, `DIVIDE`, `MOD`, `ASSIGN`.
+     - **Comparison Operators**: `LEQ`, `GEQ`, `EQ`, `NEQ`, `LT`, `GT`.
+     - **Delimiters and Special Characters**: `LPAREN`, `RPAREN`, `LBRACKET`, `RBRACKET`, `LBRACE`, `RBRACE`, `COMMA`, `COLON`, `SEMICOLON`.
+     - **I/O Operations**: `CIN`, `COUT`, `ENDL`.
+     - **Literals**: `TRUE`, `FALSE`.
+
+4. **Type Declarations (`%type`)**:
+   - Specifies the semantic types for non-terminal symbols:
+     - `expression`, `statement`, and `declaration` use `strval` to store their values.
+
+5. **Grammar Rules (`%% ... %%`)**:
+   - Defines the grammar for the mini-language. Each rule logs the production index into `Productions.out` for tracking.
+
+   - **Program Rule**:
+     - Defines the program structure: an `int main` function containing a block of `statements`.
+     - Logs production index `1`.
+
+   - **Statements**:
+     - Represents a sequence of `statement` entries or an empty block.
+     - Logs production indexes `2` or `3` depending on the rule.
+
+   - **Statement**:
+     - Covers various types of statements:
+       - **Declaration**: Logs index `4`.
+       - **Expression Statement**: Logs index `5`.
+       - **If-Else Statement**: Logs index `6`.
+       - **While Loop**: Logs index `7`.
+       - **Return Statement**: Logs index `8`.
+
+   - **Declaration**:
+     - Handles variable declarations, optionally with initialization.
+     - Logs production indexes `9` or `10`.
+
+   - **Type**:
+     - Handles supported data types: `INT`, `BOOL`, `CHAR`.
+     - Logs production indexes `11`, `12`, and `13`.
+
+   - **Expression**:
+     - Represents constants, identifiers, or arithmetic expressions.
+     - Logs production indexes `14` to `21` for different cases, such as addition, subtraction, or parenthesized expressions.
+
+6. **Error Handling Function (`void yyerror(const char *s)`)**:
+   - Reports syntax errors with their line and column numbers.
+   
+7. **Main Function (`int main(void)`)**:
+   - Steps:
+     1. Opens the input file (`problem.txt`) for parsing.
+     2. Creates `Productions.out` to log the production rules used.
+     3. Calls `yyparse()` to start the parsing process.
+     4. Outputs "Program syntactic correct" if parsing is successful.
+     5. Handles errors if the input file or `Productions.out` cannot be opened.
+   - Closes all files before exiting.
